@@ -1,8 +1,8 @@
 # MinoDice
 DnD, Pathfinder Dice Rolling Discord Bot
 
-Available commands: \n
-/r dX \n
+Available commands:
+/r dX
 /r dX+Y
 /r XdY
 /r XdY+Z
