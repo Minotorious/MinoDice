@@ -9,4 +9,5 @@ Available commands:
 /repeat XdY+Z, N (repeated rolls)  
 /repeatsorted XdY+Z, N (repeated rolls sorted highest to lowest for when order of rolls doesn't matter)  
 /rollstats (rolls stats according to the rule 4d6 rerolling 1s and keeping the 3 highest dice, 4x1s in the first 4 rolls is an instant 18)  
+  
 where X, Y, Z, and N any number with the limitations of Discord and http for message sizes.
