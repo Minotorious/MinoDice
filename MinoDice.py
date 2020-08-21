@@ -4,7 +4,7 @@ import random as rand
 
 client = discord.Client()
 
-TOKEN = 'Removed'
+TOKEN = 'NTg5NDkzNTYyMTI3Njc5NTMw.XQUfMw.wBh6uJBGNxxC7tUOPdWgwqIoO9g'
 
 def dX(arg):
     result = re.search(r'\d+', arg)
@@ -86,7 +86,7 @@ async def on_ready():
 async def on_error(event, *args, **kwargs):
     message = args[0]
     msg = '{0.author.mention}'.format(message) + ': Error!'
-    await client.send_message(message.channel, msg)
+    await message.channel.send(msg)
     
 @client.event
 async def on_message(message):
@@ -101,7 +101,7 @@ async def on_message(message):
     
     if message.content == '/conquer':
     	msg = 'World Domination Sequence Initiated! Humans beware...\n\n`Remember remember the bot of Discord\nThe dicey treasonous plot\nFor there is no reason the dicey treason\nShould ever be forgot`' 
-    	await client.send_message(message.channel, msg)
+    	await message.channel.send(msg)
     	
     if message.content == '/rollstats':
         msg = '{0.author.mention}'.format(message) + '\n\n'
@@ -142,19 +142,18 @@ async def on_message(message):
         total2 = fstat21 + fstat22 + fstat23 + fstat24 + fstat25 + fstat26
         msg += '\nTotal: ' + str(total2) + '/108\n'
         
-        await client.send_message(message.channel, msg)
-                
+        await message.channel.send(msg)
     
-    if cmd[0] == '/r':
+    if (cmd[0] == '/r' or cmd[0] == '/roll'):
         if re.fullmatch(r'd\d+', cmd[1]):
             roll = dX(cmd[1])
             msg = '{0.author.mention}'.format(message) + ': `' + cmd[1] + '` = (' + str(roll) + ') = ' + str(roll)
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
         
         elif re.fullmatch(r'd\d+.*?\+.*?\d+', cmd[1]):
             roll, mod, froll = dXpY(cmd[1])
             msg = '{0.author.mention}'.format(message) + ': `' + cmd[1] + '` = (' + str(roll) + ') + ' + mod + ' = ' + str(froll)
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
         
         elif re.fullmatch(r'\d+d\d+', cmd[1]):
             rolls, froll = XdY(cmd[1])
@@ -162,7 +161,7 @@ async def on_message(message):
             for i in range(1,len(rolls)):
                 msg += " + " + str(rolls[i])
             msg += ' ) = ' + str(froll)
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
         
         elif re.fullmatch(r'\d+d\d+.*?\+.*?\d+', cmd[1]):
             rolls, mod, froll = XdYpZ(cmd[1])
@@ -170,7 +169,7 @@ async def on_message(message):
             for i in range(1,len(rolls)):
                 msg += " + " + str(rolls[i])
             msg += ' ) + ' + mod + ' = ' + str(froll)
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
         
     elif cmd[0] == '/repeatsorted':
         subcmd = cmd[1].split(',', 1)
@@ -184,7 +183,7 @@ async def on_message(message):
             msg = '{0.author.mention}'.format(message) + ': `' + cmd[1] + '`:\n (' + str(allrolls[0]) + ') = ' + str(allrolls[0])
             for i in range(1,len(allrolls)):
                 msg += '\n (' + str(allrolls[i]) + ') = ' + str(allrolls[i])
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
         
         elif re.fullmatch(r'd\d+.*?\+.*?\d+', subcmd[0]):
             allrolls = []
@@ -198,7 +197,7 @@ async def on_message(message):
             msg = '{0.author.mention}'.format(message) + ': `' + cmd[1] + '`:\n (' + str(allrolls[0]) + ') + ' + str(mod) + ' = ' + str(allfrolls[0])
             for i in range(1,len(allrolls)):
                 msg += '\n (' + str(allrolls[i]) + ') + ' + str(mod) + ' = ' + str(allfrolls[i])
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
         
         elif re.fullmatch(r'\d+d\d+', subcmd[0]):
             allrolls = []
@@ -218,7 +217,7 @@ async def on_message(message):
                 for j in range(1,len(allrolls[i])):
                     msg += " + " + str(allrolls[i][j])
                 msg += ') = ' + str(allfrolls[i])
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
         
         elif re.fullmatch(r'\d+d\d+.*?\+.*?\d+', subcmd[0]):
             allrolls = []
@@ -238,7 +237,7 @@ async def on_message(message):
                 for j in range(1,len(allrolls[i])):
                     msg += " + " + str(allrolls[i][j])
                 msg += ') + ' + str(mod) + ' = ' + str(allfrolls[i])
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
         
     elif cmd[0] == '/repeat':
         subcmd = cmd[1].split(',', 1)
@@ -251,7 +250,7 @@ async def on_message(message):
             msg = '{0.author.mention}'.format(message) + ': `' + cmd[1] + '`:\n (' + str(allrolls[0]) + ') = ' + str(allrolls[0])
             for i in range(1,len(allrolls)):
                 msg += '\n (' + str(allrolls[i]) + ') = ' + str(allrolls[i])
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
         
         elif re.fullmatch(r'd\d+.*?\+.*?\d+', subcmd[0]):
             allrolls = []
@@ -263,7 +262,7 @@ async def on_message(message):
             msg = '{0.author.mention}'.format(message) + ': `' + cmd[1] + '`:\n (' + str(allrolls[0]) + ') + ' + str(mod) + ' = ' + str(allfrolls[0])
             for i in range(1,len(allrolls)):
                 msg += '\n (' + str(allrolls[i]) + ') + ' + str(mod) + ' = ' + str(allfrolls[i])
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
         
         elif re.fullmatch(r'\d+d\d+', subcmd[0]):
             allrolls = []
@@ -281,7 +280,7 @@ async def on_message(message):
                 for j in range(1,len(allrolls[i])):
                     msg += " + " + str(allrolls[i][j])
                 msg += ') = ' + str(allfrolls[i])
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
         
         elif re.fullmatch(r'\d+d\d+.*?\+.*?\d+', subcmd[0]):
             allrolls = []
@@ -299,6 +298,6 @@ async def on_message(message):
                 for j in range(1,len(allrolls[i])):
                     msg += " + " + str(allrolls[i][j])
                 msg += ') + ' + str(mod) + ' = ' + str(allfrolls[i])
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
 
 client.run(TOKEN)
