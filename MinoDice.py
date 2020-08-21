@@ -4,7 +4,7 @@ import random as rand
 
 client = discord.Client()
 
-TOKEN = 'NTg5NDkzNTYyMTI3Njc5NTMw.XQUfMw.wBh6uJBGNxxC7tUOPdWgwqIoO9g'
+TOKEN = 'Removed'
 
 def dX(arg):
     result = re.search(r'\d+', arg)
